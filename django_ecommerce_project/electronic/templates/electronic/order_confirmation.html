@@ -1,0 +1,123 @@
+{% extends 'electronic/base.html' %}
+{% load custom_filters %}
+
+{% block title %}Order Confirmation{% endblock %}
+
+{% block content %}
+<style>
+    /* General Styling */
+    .order-confirmation {
+        font-family: Arial, sans-serif;
+        margin: 3em auto;
+        padding: 2em;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 80%;
+        max-width: 800px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .order-confirmation:hover {
+        transform: scale(1.02);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .order-confirmation h1 {
+        color: #28a745;
+        text-align: center;
+        font-size: 2.5em;
+        margin-bottom: 1em;
+    }
+
+    .order-confirmation p {
+        font-size: 1.2em;
+        margin: 0.5em 0;
+        color: #555;
+    }
+
+    .order-confirmation strong {
+        color: #333;
+    }
+
+    .order-confirmation ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .order-confirmation li {
+        background-color: #fff;
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .order-confirmation li:hover {
+        background-color: #f1f1f1;
+        cursor: pointer;
+    }
+
+    .order-summary {
+        background-color: #28a745;
+        color: white;
+        padding: 1em;
+        text-align: center;
+        border-radius: 8px;
+        margin-top: 2em;
+        font-size: 1.3em;
+        font-weight: bold;
+    }
+
+    .order-summary p {
+        margin: 0.5em 0;
+    }
+
+    .back-to-home {
+        display: inline-block;
+        margin-top: 1.5em;
+        background-color: #007bff;
+        color: white;
+        padding: 1em 2em;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 1.1em;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .back-to-home:hover {
+        background-color: #0056b3;
+        transform: scale(1.05);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .order-confirmation {
+            width: 95%;
+        }
+    }
+</style>
+
+<div class="order-confirmation">
+    <h1>Order Confirmation</h1>
+
+    <p>Your order has been placed successfully! Here are the details:</p>
+
+    <p><strong>Order ID:</strong> {{ order.id }}</p>
+    <p><strong>Full Name:</strong> {{ order.full_name }}</p>
+    <p><strong>Phone Number:</strong> {{ order.phone_number }}</p>
+    <p><strong>Address:</strong> {{ order.address }}</p>
+    <p><strong>Email:</strong> {{ order.email }}</p>
+    <p><strong>Status:</strong> {{ order.status }}</p>
+    <p><strong>Total Price:</strong> €{{ total_price }}</p> <!-- This line shows the total price -->
+    
+    <ul>
+        {% for item in order_items %}
+            <li>{{ item.product.name }} - x{{ item.quantity }} for €{{ item.price }} each</li>
+        {% endfor %}
+    
+    </ul>
+   
+</div>
+
+{% endblock %}

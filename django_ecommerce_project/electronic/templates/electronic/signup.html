@@ -1,0 +1,100 @@
+{% extends 'electronic/base.html' %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<div class="signup-container">
+    <h1>Create an Account</h1>
+    <form method="post" class="signup-form">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit" class="signup-button">Sign Up</button>
+    </form>
+</div>
+
+<style>
+    /* Centered container for signup form */
+    .signup-container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #f4f4f9;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    /* Title styling */
+    .signup-container h1 {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    /* Form input styling */
+    .form-group {
+        margin-bottom: 15px;
+        text-align: left;
+    }
+
+    .form-group label {
+        display: block;
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 5px;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        outline: none;
+        transition: border-color 0.3s;
+    }
+
+    /* Input focus effect */
+    .form-group input:focus {
+        border-color: #007bff;
+    }
+
+    /* Signup button styling */
+    .signup-button {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .signup-button:hover {
+        background-color: #0056b3;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 500px) {
+        .signup-container {
+            width: 90%;
+            padding: 15px;
+        }
+
+        .signup-button {
+            font-size: 14px;
+        }
+    }
+</style>
+{% endblock %}

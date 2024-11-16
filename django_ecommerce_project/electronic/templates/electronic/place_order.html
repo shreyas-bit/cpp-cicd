@@ -1,0 +1,88 @@
+<!-- place_order.html -->
+{% extends 'electronic/base.html' %}
+
+{% block title %}Place Order{% endblock %}
+
+{% block content %}
+    <div class="order-form-container">
+        <h1>Place Your Order</h1>
+
+        <form method="POST" class="order-form">
+            {% csrf_token %}
+            {{ form.as_p }}  <!-- This will render the order form fields -->
+
+            <button type="submit" class="btn btn-primary">Place Order</button>
+        </form>
+    </div>
+
+    <style>
+        .order-form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .order-form-container h1 {
+            text-align: center;
+            color: #28a745;
+            font-size: 2.5em;
+        }
+
+        .order-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .order-form button {
+            padding: 1em 2em;
+            background-color: #28a745;
+            color: white;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .order-form button:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+
+        .order-form button:active {
+            transform: scale(0.98);
+        }
+
+        .order-form input,
+        .order-form select,
+        .order-form textarea {
+            width: 100%;
+            padding: 1em;
+            margin-bottom: 1.5em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        .order-form input:focus,
+        .order-form select:focus,
+        .order-form textarea:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .order-form label {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 0.5em;
+            display: block;
+        }
+    </style>
+{% endblock %}

@@ -1,0 +1,97 @@
+{% load static %}
+
+<style>
+    /* Product List Grid Styling */
+    .products {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjust grid layout */
+        gap: 20px;
+        padding: 2em;
+    }
+
+    /* Product Card Styling */
+    .product-card {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        text-align: center;
+        padding: 1.5em;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background-color: #f5f5f5;
+    }
+
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Product Image Styling */
+    .product-image {
+        width: 100%; /* Ensures the image takes the full width of its container */
+        height: auto; /* Maintain the image aspect ratio */
+        object-fit: cover; /* Ensures the image fills the area without distortion */
+        margin-bottom: 1em;
+        border-radius: 8px;
+    }
+
+    /* Product Title Styling */
+    .product-card h2 {
+        font-size: 1.5em;
+        color: #333;
+        margin-bottom: 0.5em;
+    }
+
+    /* Price Styling */
+    .price {
+        font-size: 1.2em;
+        color: #007bff;
+        margin-bottom: 1em;
+        font-weight: bold;
+    }
+
+    /* Button Styling */
+    .button {
+        display: inline-block;
+        padding: 0.7em 1.5em;
+        margin: 0.5em 0;
+        background-color: #007bff;
+        color: white;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 1em;
+        font-weight: bold;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .button:hover {
+        background-color: #0056b3;
+        transform: translateY(-2px);
+    }
+
+    /* Responsive Design for Smaller Screens */
+    @media (max-width: 768px) {
+        .products {
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjust grid layout for smaller screens */
+        }
+
+        .product-card h2 {
+            font-size: 1.3em; /* Adjust product name size for small screens */
+        }
+    }
+</style>
+
+<div class="products">
+    {% for product in products %}
+    <div class="product-card">
+        {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+        {% else %}
+            <img src="{% static 'images/placeholder.jpg' %}" alt="No Image Available" class="product-image">
+        {% endif %}
+        <h2>{{ product.name }}</h2>
+        <p class="price">Price: €{{ product.price }}</p>
+        <a href="{% url 'product_detail' product.id %}" class="button">View Details</a>
+    </div>
+{% endfor %}
+</div>

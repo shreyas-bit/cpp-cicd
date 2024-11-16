@@ -1,0 +1,118 @@
+{% extends 'electronic/base.html' %}
+
+{% block title %}Checkout{% endblock %}
+
+{% block content %}
+<style>
+    /* General Styling */
+    .checkout-title {
+        font-size: 2.5em;
+        color: #333;
+        text-align: center;
+        margin-top: 3em;
+        font-weight: bold;
+        animation: fadeIn 0.5s ease;
+    }
+
+    /* Checkout Form Styling */
+    .checkout-form {
+        width: 80%;
+        max-width: 600px;
+        margin: 2em auto;
+        background-color: #fff;
+        padding: 2em;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        animation: fadeInUp 0.5s ease;
+    }
+
+    .checkout-form input, .checkout-form select, .checkout-form textarea {
+        width: 100%;
+        padding: 1em;
+        margin-bottom: 1.5em;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 1em;
+        box-sizing: border-box;
+        transition: border-color 0.3s ease;
+    }
+
+    .checkout-form input:focus, .checkout-form select:focus, .checkout-form textarea:focus {
+        border-color: #007bff;
+        outline: none;
+    }
+
+    .checkout-form label {
+        font-size: 1.1em;
+        color: #555;
+        margin-bottom: 0.5em;
+        display: block;
+    }
+
+    /* Checkout Button Styling */
+    .checkout-button {
+        padding: 1em 2em;
+        background-color: #28a745;
+        color: white;
+        font-size: 1.2em;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .checkout-button:hover {
+        background-color: #218838;
+        transform: scale(1.05);
+    }
+
+    .checkout-button:active {
+        transform: scale(0.98);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .checkout-form {
+            width: 100%;
+            padding: 1.5em;
+        }
+
+        .checkout-title {
+            font-size: 2em;
+        }
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<h1 class="checkout-title">Checkout</h1>
+
+<form method="POST" class="checkout-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit" class="checkout-button">Place Order</button>
+</form>
+
+{% endblock %}
+
